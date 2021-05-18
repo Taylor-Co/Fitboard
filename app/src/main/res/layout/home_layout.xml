@@ -461,7 +461,7 @@
             android:layout_height="0px"
             android:layout_weight="76"
             android:id="@+id/history_main"
-
+            android:background="#252525"
             android:visibility="gone"
             android:orientation="vertical">
 
@@ -489,7 +489,7 @@
                     android:layout_width="0px"
                     android:layout_height="match_parent"
                     android:id="@+id/history_date_scrollview"
-                    android:background="@drawable/title_background"
+
                     android:layout_weight="75">
 
                     History Date Scroll
@@ -550,6 +550,7 @@
                     android:layout_width="0px"
                     android:layout_height="match_parent"
                     android:id="@+id/exercises_scroll_vert"
+                    android:background="#252525"
                     android:layout_weight="75">
 
                     <HorizontalScrollView

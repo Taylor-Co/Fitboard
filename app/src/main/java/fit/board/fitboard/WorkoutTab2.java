@@ -927,10 +927,10 @@ public class WorkoutTab2{
             historyDates[i] = new TextView(activity.context);
             //historyDates[i].setText(historyCursor.getString(2));
             historyDates[i].setGravity(Gravity.CENTER);
-            historyDates[i].setTextColor(Color.BLACK);
+            historyDates[i].setTextColor(Color.parseColor("#f6f6f6"));
             historyDates[i].setTypeface(null, Typeface.BOLD);
             historyDates[i].setTextSize(TypedValue.COMPLEX_UNIT_DIP, 22);
-            historyDates[i].setBackground(titleBackground2);
+           // historyDates[i].setBackground(titleBackground2);
 
             String dateString = "";
             switch (historyCursor.getInt(1)){
@@ -1003,8 +1003,8 @@ public class WorkoutTab2{
             historyExercises[i].setTextSize(TypedValue.COMPLEX_UNIT_DIP, 22);
             historyExercises[i].setTypeface(null, Typeface.BOLD);
             historyExercises[i].setGravity(Gravity.CENTER);
-            historyExercises[i].setBackground(titleBackground);
-            historyExercises[i].setTextColor(Color.BLACK);
+            //historyExercises[i].setBackground(titleBackground);
+            historyExercises[i].setTextColor(Color.parseColor("#f6f6f6"));
 
             historyExercises[i].setLayoutParams(historyExercisesParams);
 
@@ -1703,9 +1703,11 @@ public class WorkoutTab2{
             LayoutParams spaceParams = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, (int)(5 * activity.density));
             while(i < exercises.length){
                 exercises[i] = new BoxLayout(activity.context);
-                exercises[i].repsET.setText(columnCursor.getString(currentColumn++));
-                exercises[i].repsET.setBackgroundColor(Color.LTGRAY);
+                exercises[i].repsET.setText("x" + columnCursor.getString(currentColumn++));
+                //exercises[i].repsET.setBackgroundColor(Color.LTGRAY);
+                exercises[i].repsET.setTextColor(Color.parseColor("#f6f6f6"));
                 exercises[i].weightET.setText(columnCursor.getString(currentColumn++));
+                exercises[i].weightET.setTextColor(Color.parseColor("#f6f6f6"));
                 addView(exercises[i]);
                 View space = new View(activity.context);
 
