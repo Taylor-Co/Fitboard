@@ -323,7 +323,7 @@ public class ProgressTab {
 
             dateTV = new TextView(activity);
             dateTV.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 22);
-            dateTV.setTextColor(Color.BLACK);
+            dateTV.setTextColor(Color.parseColor("#f6f6f6"));
             dateTV.setTextAlignment(TEXT_ALIGNMENT_VIEW_START);
             dateTV.setText("Jan 28, '21");
             LayoutParams dateTVParams = new LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1);
@@ -331,7 +331,7 @@ public class ProgressTab {
 
             weightTV = new TextView(activity);
             weightTV.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 22);
-            weightTV.setTextColor(Color.BLACK);
+            weightTV.setTextColor(Color.parseColor("#f6f6f6"));
             weightTV.setTextAlignment(TEXT_ALIGNMENT_CENTER);
             weightTV.setText("223.2 Lbs");
             LayoutParams weightTVParams = new LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1);
@@ -339,7 +339,7 @@ public class ProgressTab {
 
             difTV = new TextView(activity);
             difTV.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 22);
-            difTV.setTextColor(Color.BLACK);
+            difTV.setTextColor(Color.parseColor("#f6f6f6"));
             difTV.setTextAlignment(TEXT_ALIGNMENT_VIEW_END);
             //difTV.setText("(-1.2) Lbs");
             LayoutParams difTVParams = new LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1);

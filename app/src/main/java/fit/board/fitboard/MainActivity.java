@@ -372,11 +372,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             tabs[EXERCISES_ID] = findViewById(R.id.exercise_tab_icon);
             tabs[PROGRESS_ID] = findViewById(R.id.weight_tab_icon);
 
-            tabs[PROFILE_ID].setOnClickListener(MainActivity.this::onClick);
-            tabs[HOME_ID].setOnClickListener(MainActivity.this::onClick);
-            tabs[WORKOUTS_ID].setOnClickListener(MainActivity.this::onClick);
-            tabs[EXERCISES_ID].setOnClickListener(MainActivity.this::onClick);
-            tabs[PROGRESS_ID].setOnClickListener(MainActivity.this::onClick);
+            tabs[PROFILE_ID].setOnClickListener(MainActivity.this);
+            tabs[HOME_ID].setOnClickListener(MainActivity.this);
+            tabs[WORKOUTS_ID].setOnClickListener(MainActivity.this);
+            tabs[EXERCISES_ID].setOnClickListener(MainActivity.this);
+            tabs[PROGRESS_ID].setOnClickListener(MainActivity.this);
 
             tabTitles[PROFILE_ID] = " Profile";
             tabTitles[HOME_ID] = " Home";
@@ -384,7 +384,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             tabTitles[EXERCISES_ID] = " Exercises";
             tabTitles[PROGRESS_ID] = " Progress";
 
-            currentTab = WORKOUTS_ID;
+            currentTab = HOME_ID;
         }
 
         public void changeTab(int newTab){
