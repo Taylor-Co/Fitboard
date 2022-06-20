@@ -1,9 +1,7 @@
 package fit.board.fitboard;
 
-import android.app.Activity;
 import android.content.Context;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
@@ -29,11 +27,9 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.InputMismatchException;
 
 
 public class WorkoutTab2{
@@ -58,7 +54,6 @@ public class WorkoutTab2{
     int currentWorkoutHistoryBaseID = 3000;
     Boolean moving = false;
     int movingIndex;
-
 
     LinearLayout exerciseInfoList;
     LinearLayout exerciseHistoryViewMain;
@@ -103,7 +98,6 @@ public class WorkoutTab2{
     public WorkoutTab2(MainActivity activityIn){
         activity = activityIn;
         init();
-
     }
 
     public void setVisible(){
@@ -212,7 +206,10 @@ public class WorkoutTab2{
         loadWorkouts();
     }
 
-    void saveWorkout(){
+    boolean saveWorkout(){
+        if(exerciseTitleET.getText().toString().equals("")){
+            return false;
+        }
         activity.dbManager.workoutsDB.execSQL("INSERT INTO WorkoutList Values(" + ++lastWorkoutID + ", '" +  exerciseTitleET.getText() +"');");
         activity.dbManager.workoutsDB.execSQL("CREATE TABLE IF NOT EXISTS Workout" + lastWorkoutID + "(Exercise VARCHAR, Type VARCHAR, Reps INT);");
 
@@ -264,7 +261,7 @@ public class WorkoutTab2{
         activity.exerciseTab.loadExerciseInfoList();
 
         Toast.makeText(activity.context, "ID: " + lastWorkoutID, Toast.LENGTH_SHORT).show();
-
+        return true;
     }
 
     void saveWorkoutPre(String workoutNameIn, String[] exerciseNamesIn){
@@ -567,7 +564,10 @@ public class WorkoutTab2{
     }
 
     public void saveAndReset() {
-        saveWorkout();
+        if(!saveWorkout()){
+            Toast.makeText(activity.context, "Workout name must be specified" + lastWorkoutID, Toast.LENGTH_SHORT).show();
+            return;
+        }
         loadWorkouts();
         returnIcon.callOnClick();
         exerciseTitleET.setText("");
@@ -929,7 +929,7 @@ public class WorkoutTab2{
             historyDates[i].setGravity(Gravity.CENTER);
             historyDates[i].setTextColor(Color.parseColor("#f6f6f6"));
             historyDates[i].setTypeface(null, Typeface.BOLD);
-            historyDates[i].setTextSize(TypedValue.COMPLEX_UNIT_DIP, 22);
+            historyDates[i].setTextSize(TypedValue.COMPLEX_UNIT_DIP, 20);
            // historyDates[i].setBackground(titleBackground2);
 
             String dateString = "";
@@ -980,7 +980,7 @@ public class WorkoutTab2{
             historyCursor.moveToNext();
             View line = new View(activity.context);
 
-            line.setBackgroundColor(Color.BLACK);
+            line.setBackgroundColor(Color.parseColor("#f6f6f6"));
             line.setLayoutParams(lineParams);
 
             historyDateScroll.addView(historyDates[i]);
@@ -1000,7 +1000,7 @@ public class WorkoutTab2{
         while(i < historyExercises.length){
             historyExercises[i] = new TextView(activity.context);
             historyExercises[i].setText(exercisesCursor.getString(0));
-            historyExercises[i].setTextSize(TypedValue.COMPLEX_UNIT_DIP, 22);
+            historyExercises[i].setTextSize(TypedValue.COMPLEX_UNIT_DIP, 20);
             historyExercises[i].setTypeface(null, Typeface.BOLD);
             historyExercises[i].setGravity(Gravity.CENTER);
             //historyExercises[i].setBackground(titleBackground);
@@ -1010,7 +1010,7 @@ public class WorkoutTab2{
 
             View line = new View(activity.context);
 
-            line.setBackgroundColor(Color.BLACK);
+            line.setBackgroundColor(Color.parseColor("#f6f6f6"));
             line.setLayoutParams(lineParamsVert);
 
             historyExercisesScroll.addView(historyExercises[i]);
@@ -1036,7 +1036,7 @@ public class WorkoutTab2{
             historyColumns[i] = new HistoryColumn(activity.context);
             historyColumns[i].setExercises(historyCursor);
             View space = new View(activity.context);
-            space.setBackgroundColor(Color.BLACK);
+            space.setBackgroundColor(Color.parseColor("#f6f6f6"));
 
             space.setLayoutParams(spaceParams);
             historyLayoutColumns.addView(historyColumns[i]);
@@ -1318,7 +1318,7 @@ public class WorkoutTab2{
 
             //Type Textview
             TextView typeTV = new TextView(context);
-            typeTV.setTextColor(Color.BLACK);
+            typeTV.setTextColor(Color.parseColor("#f6f6f6"));
             typeTV.setText("Type");
             typeTV.setTextAlignment(TEXT_ALIGNMENT_CENTER);
             typeTV.setTypeface(null, Typeface.BOLD);
@@ -1350,7 +1350,7 @@ public class WorkoutTab2{
             //Break Textview
             TextView breakTV = new TextView(context);
             breakTV.setText("Break");
-            breakTV.setTextColor(Color.BLACK);
+            breakTV.setTextColor(Color.parseColor("#f6f6f6"));
             breakTV.setTextAlignment(TEXT_ALIGNMENT_CENTER);
             breakTV.setTypeface(null, Typeface.BOLD);
             breakTV.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 20);
@@ -1362,7 +1362,7 @@ public class WorkoutTab2{
             breakET = new EditText(context);
             breakET.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 20);
             breakET.setTextAlignment(TEXT_ALIGNMENT_CENTER);
-            breakET.setTextColor(Color.BLACK);
+            breakET.setTextColor(Color.parseColor("#f6f6f6"));
             breakET.setText("120");
             breakET.setSingleLine();
             breakET.setImeOptions(EditorInfo.IME_ACTION_DONE);
@@ -1388,7 +1388,7 @@ public class WorkoutTab2{
             //Mult Textview
             TextView multTV = new TextView(context);
             multTV.setText("Mult");
-            multTV.setTextColor(Color.BLACK);
+            multTV.setTextColor(Color.parseColor("#f6f6f6"));
             multTV.setTextAlignment(TEXT_ALIGNMENT_CENTER);
             multTV.setTypeface(null, Typeface.BOLD);
             multTV.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 20);
@@ -1398,7 +1398,7 @@ public class WorkoutTab2{
 
             //Break EditText
             multET = new EditText(context);
-            multET.setTextColor(Color.BLACK);
+            multET.setTextColor(Color.parseColor("#f6f6f6"));
             multET.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 20);
             multET.setTextAlignment(TEXT_ALIGNMENT_CENTER);
             multET.setInputType(InputType.TYPE_CLASS_NUMBER);
@@ -1571,7 +1571,7 @@ public class WorkoutTab2{
 
             weightET = new EditText(context);
             weightET.setTextAlignment(TEXT_ALIGNMENT_CENTER);
-            weightET.setTextColor(Color.BLACK);
+            weightET.setTextColor(Color.parseColor("#f6f6f6"));
             weightET.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 15);
             weightET.setText("");
             weightET.setEnabled(false);
@@ -1590,7 +1590,7 @@ public class WorkoutTab2{
 
             repsET = new EditText(context);
             repsET.setTextAlignment(TEXT_ALIGNMENT_CENTER);
-            repsET.setTextColor(Color.BLACK);
+            repsET.setTextColor(Color.parseColor("#f6f6f6"));
             repsET.setEnabled(false);
             repsET.setPadding((int)(10 * getResources().getDisplayMetrics().density),0,(int)(10 * getResources().getDisplayMetrics().density),0);
             repsET.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 15);
@@ -1712,7 +1712,7 @@ public class WorkoutTab2{
                 View space = new View(activity.context);
 
                 space.setLayoutParams(spaceParams);
-                space.setBackgroundColor(Color.BLACK);
+                space.setBackgroundColor(Color.parseColor("#f6f6f6"));
                 addView(space);
                 //TextView t = new TextView(context);
                 //t.setText("Surp");

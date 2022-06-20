@@ -80,7 +80,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     TextView tabTitleTV;
 
     int lastWorkoutID = 0;
-    // Just an examplesadcdsc cvdsc sfdsfsdwaddadfdesffgdsfg
     static int RESULT_LOAD_IMAGE = 1;
     static int PIC_CROP = 2;
 
@@ -91,6 +90,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         
         init();
         loadDatabase();
+        try {
+            loadFromOnlineDatabase();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        iconBar.changeTab(WORKOUTS_ID);
     }
 
     @Override
@@ -127,6 +132,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             e.printStackTrace();
         } */
 
+
+
     }
 
     void loadFromOnlineDatabase() throws ClassNotFoundException {
@@ -158,7 +165,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
             }
         }
-        Log.i(null, "response: " + s);
+        Log.i("wowz", "response: " + s);
         return;
     }
 
@@ -171,15 +178,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 iconBar.changeTab(WORKOUTS_ID);
                 //workoutTab.setVisible();
                 break;
-            case R.id.home_button:
+            /*case R.id.home_button:
                 iconBar.changeTab(HOME_ID);
-                break;
-            case R.id.profile_icon:
+                break; */
+            /* case R.id.profile_icon:
                 iconBar.changeTab(PROFILE_ID);
-                break;
-            case R.id.exercise_tab_icon:
+                break; */
+            /* case R.id.exercise_tab_icon:
                 iconBar.changeTab(EXERCISES_ID);
-                break;
+                break; */
             case R.id.weight_tab_icon:
                 iconBar.changeTab(PROGRESS_ID);
                 break;
@@ -366,16 +373,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             selected[EXERCISES_ID] = R.drawable.exercise_tab_icon;
             selected[PROGRESS_ID] = R.drawable.weight_tab_icon;
 
-            tabs[PROFILE_ID] = findViewById(R.id.profile_icon);
+            //tabs[PROFILE_ID] = findViewById(R.id.profile_icon);
             tabs[HOME_ID] = findViewById(R.id.home_button);
             tabs[WORKOUTS_ID] = findViewById(R.id.workout_icon);
-            tabs[EXERCISES_ID] = findViewById(R.id.exercise_tab_icon);
+            //tabs[EXERCISES_ID] = findViewById(R.id.exercise_tab_icon);
             tabs[PROGRESS_ID] = findViewById(R.id.weight_tab_icon);
 
-            tabs[PROFILE_ID].setOnClickListener(MainActivity.this);
+            //tabs[PROFILE_ID].setOnClickListener(MainActivity.this);
             tabs[HOME_ID].setOnClickListener(MainActivity.this);
             tabs[WORKOUTS_ID].setOnClickListener(MainActivity.this);
-            tabs[EXERCISES_ID].setOnClickListener(MainActivity.this);
+            //tabs[EXERCISES_ID].setOnClickListener(MainActivity.this);
             tabs[PROGRESS_ID].setOnClickListener(MainActivity.this);
 
             tabTitles[PROFILE_ID] = " Profile";
