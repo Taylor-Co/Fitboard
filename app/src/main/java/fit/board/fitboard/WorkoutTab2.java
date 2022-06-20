@@ -100,10 +100,6 @@ public class WorkoutTab2{
         init();
     }
 
-    public void setVisible(){
-        mainLayout.setVisibility(View.VISIBLE);
-    }
-
     private void init() {
         mainLayout = activity.findViewById(R.id.workout_main);
 
